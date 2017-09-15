@@ -1,0 +1,90 @@
+-- Metal revs
+let fill1 = const $ degradeBy 0.3 $ sound "form-msp5:4*16" # begin (scale 0 0.5 (fast 2 sine)) # end (scale 0.05 0.06 $ sine1) # gain 0.5 # hpf 7000
+
+-- gamelan
+let fill2 = const $ degradeBy 0.2 $ sound "form-msp5:5*16" # begin (scale 0 0.1 (fast 2 sine)) # end (scale 1 0.854 $ sine1) # room (scale 0.2 0.1 (slow 3 (sine))) # size (scale 0.1 0.9 (slow 2 (sine))) # gain 0.9 # shape 0.3 # pan (scale 0 1 saw1)
+
+-- bassy
+let fill3 = const $ degradeBy 0.3 $ sound "form-msp5:9*4" # begin (scale 0 0.4 $ sine1) # end (scale 0 0.3 $ sine1) # shape 0.4 # gain 0.9
+
+
+hush
+
+-- master kiks (change degrade/*8)
+-- form-msp5:1*8
+
+cps (140/60/4)
+
+cps 1
+
+-- Scratchy
+
+d3
+$ every 8 (# speed 3)
+$ degradeBy 0.3 $ sound "form-msp5:10*4"
+# shape 0.1
+# gain 1
+# end (scale 0.05 0.19 $ slow 4(sine1))
+# bpf (scale 1000 3000 $ fast 2(saw1))
+# bpq 0.9
+# pan (scale 0 1 $ fast 2(saw1))
+
+d3 silence
+
+d4
+$ sometimesBy 0.25 (# crush 4)
+$ every 15 (silence1)
+$ every 8 (silence1)
+$ every 4 (silence1)
+$ degradeBy 0.3 $ sound "[form-msp5:1*8, gabba*8?]"
+# gain "1 0.8"
+# shape 0.5
+# end (scale 0.022 0.044 $ sine1)
+# pan (scale 0 1 (slow 2 saw1))
+
+d4 silence
+
+$ degradeBy 0.3 $ sound "[imp*4, form-msp5:1*8, gabba*8?, [~ industrial:1*8]?]"
+
+d4
+$ sometimesBy 0.25 (# crush 4)
+$ every 15 (silence1)
+$ every 8 (silence1)
+$ every 4 (silence1)
+$ degradeBy 0.3 $ sound "[gabba*8, [~ industrial:1*8]?]"
+# gain "1 0.8"
+# shape 0.5
+# speed 0.8
+
+d4 silence
+
+-- NOISE PAD
+
+d5
+$ stut 7 0.2 0.3
+$ spread ($) [palindrome, fast 1, striate' 2 4, (# speed (scale 0.5 1 $ slow 5 $ sine1))]
+$ sometimesBy 0.25 (# crush 4)
+$ slow 3
+$ sound "form-msp5:13"
+# begin (scale 0 1 (slow 16 sine1))
+# shape 0.5
+# gain 0.8
+# hpf 2000
+
+d5 silence
+
+-- LOW VOX PAD
+
+d7
+$ slow 16
+$ spread ($) [palindrome, striate' 2 16]
+$ sound "form-msp6:3 ~"
+# gain 0.9
+# cutoff (scale 500 2000 $ slow 2 sine1)
+# pan (scale 0 1 (slow 8 (sine)))
+# speed 0.4
+# hpf 2000
+
+d7 silence
+
+hush

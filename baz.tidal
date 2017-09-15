@@ -1,0 +1,153 @@
+
+/*************** GAMELAN ***************** /
+
+
+
+-- this one!
+-- sid is the bass note (1) so change it's value
+d3
+$ every 600 (silence1)
+$ every 16 (const $ degradeBy 0.1 $ sound "form-msp5*3" # gain 1 # n (irand 8) )
+$ degradeBy 0.1
+$ sound "[[[bd*2,sd] perc:5*8?], [perc, sid:8?*16]]"
+# gain "0.8 1.2 1 1.3"
+# speed "0.5 0.9 1 0.5"
+
+d4
+$ slow 8
+$ sound "form-msp1:2 ~"
+# gain 1
+# cutoff (scale 500 20000 $ slow 2 sine1)
+# pan (scale 0 1 (slow 8 (sine)))
+# speed 0.8
+
+# hpf 4000
+
+d5
+$ sometimesBy 0.3 (# crush 4)
+$ slow 3
+$ sound "loops-msp"
+# gain 1.2
+# hpf 3000
+
+
+
+-- The line breaks seem to matter i.e write on single line!
+
+let seqSilence = sound "~"
+
+let seqPerc = sometimesBy 0.5 (# shape 0.5) $ every 8 (# speed 3) $ degradeBy 0.3 $ sound "form-msp5:11*4" # gain 1 # end (scale 0.05 0.17 $ slow 4(sine1)) # speed 1.8
+
+let seqGtr = degradeBy 0.5 $ sound "form-msp5:12*4" # end (scale 0.1 0.5 $ sine1) # pan (scale 0 1 $ slow 16(sine1)) # gain 1
+
+hush
+
+t1 (xfadeIn 16)
+$ (pure now) ~> seqPLoop [
+  (0, 4, seqSilence),
+  (4, 6, seqSilence),
+  (6, 12, seqPerc),
+  (12, 14, seqSilence)
+]
+# pan (scale 0 1 saw1)
+# speed 0.5
+# gain 1.1
+
+# cutoff 500
+
+
+
+hush
+
+d1 silence
+
+-- GONG ARPS?
+
+t2 (xfadeIn 16)
+$ spread ($) [fast 2, palindrome, slow 5, striate' 2 8, (# speed (scale 0.1 0.8 $ slow 5 $ sine1))]
+$ stut 7 0.2 0.5
+$ every 4 (0.25 <~)
+$ every 2 (silence1)
+$ every 3 (# speed 0.3)
+$ slow 16
+$ sometimesBy 0.1 (# crush "8")
+$ n "0-7 3-1 4-7"
+# sound "supergong"
+# speed (scale 0.1 1.7 (rand))
+# pan (scale 0 1 saw1)
+# gain 0.9
+# hpf 2000
+
+d2 silence
+
+
+$ every 32 (const $ degradeBy 0.1 $ sound "feelfx:9*3" # gain 1.2 # n (irand 8) )
+$ every 33 (const $ degradeBy 0.1 $ sound "feelfx:9*8" # gain 1.2 # n (irand 8) )
+$ every 34 (const $ degradeBy 0.1 $ sound "gabba*8" # gain 1.2 # n (irand 8) )
+
+d3
+$ every 8 (rev)
+$ sometimesBy 0.1 (# crush 4)
+$ slow 1
+$ degradeBy 0.3
+$ sound "[[[perc:5*8,perc*2] perc:3*8], [perc*8, sid*16?]]"
+# n (irand 8)
+# begin (scale 0 0.05 (slow 2 sine))
+# end (scale 0.4 0.9 (slow 16 sine))
+# accelerate 0
+# speed (scale 0.2 0.3 (fast 2 sine))
+# shape 0.4
+# gain "1.1 0.9"
+
+# cutoff 100
+# cut 1
+# hpf 3000
+
+
+
+hush
+
+/*************** TIDYME ***************** /
+
+d2
+$ chop 2
+$ sometimesBy 0.1 (# crush 4)
+$ slow 2
+$ sound "form-msp5:10"
+
+d2 silence
+
+cps 1
+
+d2
+$ slow 8
+$ sound "form-msp5:10"
+
+# cut 1
+
+d3
+$ every 8 (# speed 3)
+$ degradeBy 0.3 $ sound "form-msp5:10*4"
+# shape 0.1
+# gain 1
+# end (scale 0.05 0.19 $ slow 4(sine1))
+# bpf (scale 1000 3000 $ fast 2(saw1))
+# bpq 0.9
+# pan (scale 0 1 $ fast 2(saw1))
+
+hush
+
+d4
+$ sometimesBy 0.1 (# crush 4)
+$ slow 2
+$ sound "form-msp5:9"
+# begin (scale 0.4 0.5 $ slow 4(sine1))
+# end "0.7"
+# gain 0.6
+# bpf (scale 500 3000 $ fast 2(saw1))
+# bpq 0.9
+# pan (scale 0 1 $ fast 2(sine1))
+
+d4 silence
+
+hush

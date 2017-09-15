@@ -1,0 +1,149 @@
+
+/*************** WIREREV ***************** /
+
+d1
+$ every 3 (silence1)
+$ every 4 (# speed 0.5)
+$ every 5 (silence1)
+$ every 8 (# speed 3)
+$ degradeBy 0.3 $ sound "form-msp5:4*8"
+# begin (scale 0.2 0.7 (fast 2 sine))
+# end (scale 0.05 0.8 $ sine1)
+# gain 0.8
+# accelerate 0
+# pan (scale 0 1 (slow 4 saw1))
+
+# speed (scale 1 5 (slow 6 saw1))
+# bpf (scale 1000 8000 $ fast 2(saw1))
+# bpq 0.9
+
+d1 silence
+
+/*************** CLUNKS ***************** /
+
+d2
+$ sometimesBy 0.1 (# crush 4)
+$ every 3 (silence1)
+$ sound "form-msp5:2"
+# begin (scale 0.2 0.7 (slow 2 sine))
+# end (scale 0 1 (slow 16 sine))
+# gain 1.1
+# accelerate 0
+# bpf (scale 3000 5000 $ fast 2(saw1))
+
+d2 silence
+
+/*************** SUBZ ***************** /
+
+d3
+$ slow 1
+$ every 4 (0.5 <~)
+$ sound "<tutorial5 ~> tutorial5> <tutorial5 ~> tutorial5>"
+# f "[50] 60"
+# sustain 2
+# gain 1
+# accelerate 0.3
+# cutoff 50
+
+d3 silence
+
+
+/*************** SOUNDBOI ***************** /
+
+$ swingBy (0.38) 4
+
+cps (140/60/4)
+
+-- blip
+-- sid
+-- dist
+d4
+$ every 8 (rev)
+$ every 32 (const $ degradeBy 0.1 $ sound "feelfx:9*3" # gain 1.2 # n (irand 8) )
+$ every 33 (const $ degradeBy 0.1 $ sound "feelfx:9*8" # gain 1.2 # n (irand 8) )
+$ every 34 (const $ degradeBy 0.1 $ sound "gabba*8" # gain 1.2 # n (irand 8) )
+$ sometimesBy 0.1 (# crush 4)
+$ slow 1
+$ degradeBy 0.5
+$ sound "[[[feel:5*8,amencutup*2] feel:3*8], [amencutup*8, sid*16?]]"
+# n (irand 8)
+# begin (scale 0 0.05 (slow 2 sine))
+# end (scale 0.4 0.9 (slow 16 sine))
+# accelerate 0
+# speed (scale 1 1.2 (fast 2 sine))
+# shape 0.4
+# gain "1.1 0.9"
+
+# cutoff 100
+# cut 1
+# hpf 3000
+
+d4 silence
+
+-- FILLZ
+
+d4
+$ sometimesBy 0.5 (# crush 4)
+$ degradeBy 0.4
+$ sound "[[amencutup, feel:5*8], feelfx*4?]"
+# n (irand 8)
+# speed (scale 0.7 1.2 (rand))
+# hpf 2000
+
+d4 silence
+
+-- MORE FILLZ
+d4
+$ fast 2
+$ sometimesBy 0.5 (# crush 4)
+$ degradeBy 0.6
+$ sound "[[amencutup, feel:5*8]]"
+# n (run (irand(8)))
+# gain "1.1 0.9"
+
+hush
+
+/*************** HATZ ***************** /
+
+d5 $ swingBy (1/3) 4
+
+d5
+$ degradeBy 0.4
+$ sound "hc*8 hh?"
+# note (irand 8)
+# speed (scale 1.5 1.7 (slow 2 sine))
+# gain "1 0.8"
+# hpf 8000
+
+d5 silence
+
+
+/*************** STABZ ***************** /
+
+d6
+$ every 8 (rev)
+$ slow 2
+$ stut 2 0.2 (scale 0.1 0.9 (irand 30))
+$ degradeBy 0.5
+$ sound "~ stab*4"
+# note (irand 8)
+# shape 0.4
+# bpf (scale 1000 10000 (slow 8 (rand)))
+
+d6 silence
+
+hush
+
+/*************** PADZ ***************** /
+
+d7
+$ slow 8
+$ spread ($) [palindrome, slow 5, striate' 2 16, (# speed (scale 0.1 0.8 $ slow 5 $ sine1))]
+$ sound "<form-msp6:1> ~ <form-msp6:1> ~"
+# gain 0.9
+# pan (scale 0 1 (slow 8 (sine)))
+# hpf 1000
+
+# cutoff (scale 8500 16000 $ slow 2 sine1)
+
+d7 silence
