@@ -1,0 +1,7 @@
+d2
+$ every 5 (# speed 2)
+$ iter 4
+$ degradeBy 0
+$ (sound $ samples "[[808bd:7 bd bd? 808bd], [Xcp(5,8)] ]" "0 1 2 3 4 5 6 7 8")
+# end (scale 0.4 0.8 (fast 4 rand))
+# gain 1

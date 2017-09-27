@@ -1,0 +1,17 @@
+d1
+$ every 1 (# cutoff (scale 500 2000 (rand))) -- hi
+$ every 3 (# shape 0.4)
+$ every 5 (# crush 3)
+$ every 5 (# coarse 1)
+$ slow 2
+$ degradeBy 0.3
+$ sound "[imp*8]"
+# freq (choose [219,220,221])
+# sustain (choose [3,7,9])
+# begin (scale 0.6 0.8 (slow 2 sine))
+# end (scale 3 30 (slow 3 sine))
+# gain 0.8
+# accelerate 0
+# pan (scale 0 1 $ rand)
+
+d1 silence

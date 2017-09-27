@@ -55,7 +55,10 @@ d8 silence
 
 
 
--- broke toch 150 BPM
+-- broke tech 150 BPM
+
+cps (150/60/4)
+
 
 d2
 $ every 2 (# coarse 4)
@@ -63,6 +66,7 @@ $ every 3 (# crush 4)
 $ sound "[techno:1*1, techno:2 ~ techno:6*3?]"
 # gain 1.2
 # speed 0.7
+
 
 d2 silence
 
@@ -100,23 +104,26 @@ $ sound "[bd stomp*1? bd/2 sd?*4, rs ~ rs*4?]"
 
 d2 silence
 
+cps 1
+
 -- this one!
 -- sid is the bass note (1) so change it's value
 d3
 $ every 600 (silence1)
-$ every 32 (const $ degradeBy 0.1 $ sound "form-msp5*3" # gain 1 # n (irand 8) )
-$ degradeBy 0.8
+$ every 16 (const $ degradeBy 0.1 $ sound "form-msp7*3" # gain 1 # n (irand 8) )
+$ degradeBy 0.3
 $ sound "[[[bd*2?,sd] perc:5?*7], [perc sid:1?*5 ~, tok*13?]]"
 # gain "0.8 1.1 1 1.2"
 # speed "0.5 0.9 1 0.5"
 
 d4
-$ slow 8
+$ slow 1
 $ sound "form-msp1:2 ~"
-# gain 0.7
+# gain 0.8
 # cutoff (scale 500 20000 $ slow 2 sine1)
 # pan (scale 0 1 (slow 8 (sine)))
 # speed 0.8
+# legato 1
 
 # hpf 4000
 
@@ -160,28 +167,29 @@ $ sound "msg*8"
 
 
 
-
-
 -- percy roller 170 BPM
 
 cps (170/60/4)
 
-d6
-$ sound "[world:6 bassdm:1*3, electro1*9 electro1:9*5?, feelfx*1 ]"
-# speed "0.6 0.2 0.8 0.2"
-# gain "0.9 1 1"
+let percyFill = const $ sound "[world:6 bassdm:1*3, electro1*9 electro1:9*5?, feelfx*1 ]"
 
-# hpf 7000
+d6
+$ every 8 (percyFill)
+$ sound "[world:6 bassdm:1*3 808bd:1, electro1:7*9? electro1:9*5?, feelfx*1? ]"
+# speed "0.6 0.2 0.8 0.2"
+# gain "0.9 1 1.2"
+# hpf 000
 
 d6 silence
 
 d7
+$ every 4 (# speed (scale 0.4 0.8 (fast 4 (sine))))
 $ sound "[~ can*9?]"
 # n (irand 20)
 # speed 0.8
 # gain 1.2
 # pan (scale 0 1 (fast 1 rand))
-# speed (scale 0.4 0.8 (fast 4 (sine)))
+
 
 d7 silence
 
@@ -190,7 +198,7 @@ $ fast 2
 $ sound "[hh:11*3?, future:5*3?, future:3*2 hardcore:7]"
 # end (scale 0.04 0.38 $ fast 2 $ sine1)
 # speed (scale 0.96 1 (fast 4 (sine)))
-# gain "1 1.2 1.2 1"
+# gain "1 1 1 1"
 
 d8 silence
 
@@ -207,15 +215,23 @@ $ sound "[arp:0 arp:3, form-msp6:2]"
 # hpf (scale 2000 5000 (slow 2 (sine)))
 # gain 1.1
 # pan (scale 0 1 saw1)
+# legato 8
 
 d1 silence
 
 d2
 $ every 2 (silence1)
 $ fast 2
-$ sound "loops-msp:2]"
-# gain 0.9
-# pan (scale 1 0 saw1)
+$ sound "[loops-msp:2]"
+# n (irand 3)
+# gain 0.8
+# pan (scale 1 0 rand)
+
+# lpf (choose [500, 2000, 15000, 20000])
+# lpq (scale 0 0.3 (slow 2 $ sine))
+
+
+d2 silence
 
 d3
 $ fast 4

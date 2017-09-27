@@ -1,0 +1,54 @@
+d1
+$ every 5 (# speed 1.5)
+$ every 6 (# speed 0.5)
+$ every 6 (# gain 0.9)
+$ every 2 (fast 2)
+$ sound (samples "[808bd:1*3]" (iter 10 $ run 8))
+# gain "1 0.9 1 0.7"
+
+d1 silence
+
+d2
+$ every 2 (fast 2)
+$ every 5 (# speed 1.5)
+$ every 6 (# speed 0.5)
+$ every 6 (# gain 0.9)
+$ sound (samples "[hc*3]" (iter 10 $ run 8))
+# gain "0.8 0.7 0.8 0.7"
+
+d2 silence
+
+d3
+$ every 15 (fast 2)
+$ sound (samples "[808bd:1*1?, amencutup*6]" (iter (choose [3,6,9,12,15]) $ run (choose [4,8,12,16,20,24,32])))
+# speed (scale 0.98 1.01 $ slow 1 $ rand)
+# gain 1.1
+
+d3 silence
+
+d4
+$ every 3 (# speed 0.5)
+$ every 2 (silence1)
+$ every 3 (silence1)
+$ every 4 (silence1)
+$ every 5 (silence1)
+$ degradeBy 0
+$ sound "[m-boom*6]"
+# pan (fast 1 $ saw)
+# gain 1
+
+d4 silence
+
+d5
+$ every 2 (silence1)
+$ every 3 (# speed 0.5)
+$ every 4 (silence1)
+$ every 5 (silence1)
+$ every 6 (silence1)
+$ every 7 (silence1)
+$ degradeBy 0
+$ sound (samples "[m-metal*8]" (iter 5 $ run 30))
+# pan (fast 1 $ saw)
+# gain 0.6
+
+d5 silence

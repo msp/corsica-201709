@@ -1,0 +1,31 @@
+cps 1
+
+d1
+$ every 5 (# speed 1.5)
+$ every 3 (# speed 0.5)
+$ every 16 (# shape 0.1)
+$ every 9 (# crush 4)
+$ every 2 (slow 2)
+$ every 3 (0.25 <~)
+$ degradeBy 0
+$ fast 2
+$ (sound $ samples "[drum*2, [Xstab:8*3?, Xstab:7*2?]?, 808bd:1*1?]" "0 3 6 8 6 7")
+# speed 1
+# gain 1
+
+
+d2
+$ every 5 (# speed 1.5)
+$ every 3 (# speed 0.5)
+$ every 16 (# shape 0.1)
+$ every 3 (# crush 2)
+$ every 2 (slow 2)
+$ every 3 (0.25 <~)
+$ degradeBy 0
+$ fast 1
+$ (sound $ samples "[hc*4?, ho/2 ~ ho? ho:1]" "0 3 6 8 6 7")
+# speed 1
+# gain 0.6
+# coarse 3
+
+d2 silence

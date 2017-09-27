@@ -107,7 +107,7 @@ hush
 /*************** GLITCH ***************** /
 
 d2
-$ degradeBy 0.3
+$ degradeBy 0
 $ every 4 (0.25 <~)
 $ stack [
  sound "<msp ~ print:1*2 ~ print:0 ~ ~ >/10 <casio:1*2? ~ procshort*8?>"
@@ -181,6 +181,8 @@ $ stack [
 
 hush
 
+cps 1
+
 d5
 $ fast 2
 $ stack [
@@ -213,18 +215,16 @@ hush
 sound "<~ [supergong/16]>" # gain 0.5
 
 d5
-$ every 4 (# speed (scale 0.0 0.4 $ rand))
-$ degradeBy 0
-$ sometimesBy 0.1 (# crush 4)
-$ fast 1
+$ fast 2
 $ stack [
-  sound "<techno*4>",
-  sound "<~ [techno:3/2]>",
-  sound "<~ [techno:4?*2]>"
+  sound "<techno>",
+  sound "<~ [techno:3]>",
+  sound "<~ [techno:4]>"
 ]
 # orbit ch1_2
 # gain 1.6
-# speed 0.2
+# speed 0.5
+
 # room (scale 0.4 0.1 (slow 3 (sine)))
 # size (scale 0.1 0.4 (slow 8 (sine)))
 

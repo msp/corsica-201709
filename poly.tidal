@@ -1,0 +1,42 @@
+d1 $ sound "[808bd:1, bd:5(5,8), Xcp(3,4)?]"
+
+t1 (xfadeIn 8) $ sound "[bd(5,8), cp:3, 808bd:1, haw*8]"
+
+d2
+$ sound "[hh*4] [sd:0 sd:1? sd sd:1?]"
+# speed 1
+
+d2 silence
+
+
+d1 $ sound "[bd:5(4,11), cp(4,11)?]"
+
+let fill = const $ degradeBy 0 $ (sound $ samples "m-metal:20" "0 2 3") # gain 0.7
+
+d3
+$ iter 4
+$ fast 2
+$ every 5 (# speed 0.5)
+$ every 3 (# speed 0.3)
+$ every 2 (slow 2)
+$ every 8 (fill)
+$ (sound $ samples "m-metal:12" "0 2 3")
+# speed 0.9
+# gain 0.8
+# legato 0.8
+# pan (scale 0 1 $ fast 2 $ rand)
+# bpf 4000
+
+d3 silence
+
+d4
+$ every 3 (# speed 1.5)
+$ sound "m-sweep"
+# legato 2
+# speed 1
+# gain 0.7
+
+
+# hpf 2000
+
+d4 silence

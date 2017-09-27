@@ -1,11 +1,11 @@
 -- Metal revs
-let fill1 = const $ degradeBy 0.3 $ sound "form-msp5:4*16" # begin (scale 0 0.5 (fast 2 sine)) # end (scale 0.05 0.06 $ sine1) # gain 0.5 # hpf 7000
+let fill1 = const $ degradeBy 0.3 $ sound "form-msp5:3*16" # begin (scale 0 0.5 (fast 2 sine)) # end (scale 0.05 0.06 $ sine1) # gain 0.8 # hpf 00
 
 -- gamelan
-let fill2 = const $ degradeBy 0.2 $ sound "form-msp5:5*16" # begin (scale 0 0.1 (fast 2 sine)) # end (scale 1 0.854 $ sine1) # room (scale 0.2 0.1 (slow 3 (sine))) # size (scale 0.1 0.9 (slow 2 (sine))) # gain 0.9 # shape 0.3 # pan (scale 0 1 saw1)
+let fill2 = const $ degradeBy 0.2 $ sound "form-msp5:4*16" # begin (scale 0 0.1 (fast 2 sine)) # end (scale 1 0.854 $ sine1) # room (scale 0.2 0.1 (slow 3 (sine))) # size (scale 0.1 0.9 (slow 2 (sine))) # gain 0.9 # shape 0.3 # pan (scale 0 1 saw1)
 
 -- bassy
-let fill3 = const $ degradeBy 0.3 $ sound "form-msp5:9*4" # begin (scale 0 0.4 $ sine1) # end (scale 0 0.3 $ sine1) # shape 0.4 # gain 0.9
+let fill3 = const $ degradeBy 0.3 $ sound "form-msp5:8*4" # begin (scale 0 0.4 $ sine1) # end (scale 0 0.3 $ sine1) # shape 0.4 # gain 0.9
 
 
 hush
@@ -21,7 +21,7 @@ cps 1
 
 d3
 $ every 8 (# speed 3)
-$ degradeBy 0.3 $ sound "form-msp5:10*4"
+$ degradeBy 0.3 $ sound "form-msp5:3*4"
 # shape 0.1
 # gain 1
 # end (scale 0.05 0.19 $ slow 4(sine1))
@@ -31,16 +31,18 @@ $ degradeBy 0.3 $ sound "form-msp5:10*4"
 
 d3 silence
 
+
 d4
+$ every 15 (fill1)
+$ every 8 (fill2)
+$ every 4 (fill3)
 $ sometimesBy 0.25 (# crush 4)
-$ every 15 (silence1)
-$ every 8 (silence1)
-$ every 4 (silence1)
 $ degradeBy 0.3 $ sound "[form-msp5:1*8, gabba*8?]"
 # gain "1 0.8"
 # shape 0.5
-# end (scale 0.022 0.044 $ sine1)
+# legato 1
 # pan (scale 0 1 (slow 2 saw1))
+
 
 d4 silence
 
@@ -48,9 +50,9 @@ $ degradeBy 0.3 $ sound "[imp*4, form-msp5:1*8, gabba*8?, [~ industrial:1*8]?]"
 
 d4
 $ sometimesBy 0.25 (# crush 4)
-$ every 15 (silence1)
-$ every 8 (silence1)
-$ every 4 (silence1)
+$ every 15 (fill1)
+$ every 8 (fill2)
+$ every 2 (fill3)
 $ degradeBy 0.3 $ sound "[gabba*8, [~ industrial:1*8]?]"
 # gain "1 0.8"
 # shape 0.5
@@ -65,7 +67,7 @@ $ stut 7 0.2 0.3
 $ spread ($) [palindrome, fast 1, striate' 2 4, (# speed (scale 0.5 1 $ slow 5 $ sine1))]
 $ sometimesBy 0.25 (# crush 4)
 $ slow 3
-$ sound "form-msp5:13"
+$ sound "form-msp5:11"
 # begin (scale 0 1 (slow 16 sine1))
 # shape 0.5
 # gain 0.8
@@ -76,15 +78,28 @@ d5 silence
 -- LOW VOX PAD
 
 d7
-$ slow 16
+$ slow 1
 $ spread ($) [palindrome, striate' 2 16]
 $ sound "form-msp6:3 ~"
+# begin (choose [0, 0.6, 0.7])
 # gain 0.9
-# cutoff (scale 500 2000 $ slow 2 sine1)
+# cutoff (scale 500 20000 $ slow 2 sine1)
 # pan (scale 0 1 (slow 8 (sine)))
 # speed 0.4
-# hpf 2000
+# accelerate 0
+# legato 10
+
 
 d7 silence
 
-hush
+
+-- Ringy subz
+
+d2
+$ slow 3
+$ sound "tutorial3" # n (choose [-27,-27,-26])
+# gain 0.8
+# sustain 3.1
+# shape 0.2
+# coarse 4
+# sustain 3
