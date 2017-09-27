@@ -1,0 +1,43 @@
+
+/*************** GAMELAN ***************** /
+
+-- 150 BPM
+-- The line breaks seem to matter i.e write on single line!
+
+let seqSilence = sound "~"
+
+let seqPerc = stut 2 0.5 0.4 $ sometimesBy 0.5 (# shape 0.5) $ every 8 (# speed 3) $ degradeBy 0.3 $ sound "form-msp5:9*4" # gain 1 # end (scale 0.05 0.17 $ slow 4(sine1)) # speed 1.8
+
+let seqGtr = degradeBy 0.5 $ sound "form-msp5:10*4" # end (scale 0.1 0.5 $ sine1) # pan (scale 0 1 $ slow 16(sine1)) # gain 1
+
+t1 (xfadeIn 16)
+$ (pure now) ~> seqPLoop [
+  (0, 4, seqGtr),
+  (4, 6, seqSilence),
+  (6, 12, seqPerc),
+  (12, 14, seqSilence)
+]
+# pan (scale 0 1 saw1)
+# speed 0.5
+# cutoff 11350
+
+d1 silence
+
+-- GONG ARPS?
+$ spread ($) [fast 2, palindrome, slow 5, striate' 2 8, (# speed (scale 0.1 0.8 $ slow 5 $ sine1))]
+
+t2 (xfadeIn 16)
+$ stut 7 0.2 0.5
+$ every 4 (0.25 <~)
+$ every 2 (silence1)
+$ every 3 (# speed 0.3)
+$ slow 16
+$ sometimesBy 0.1 (# crush "8")
+$ n "0-7 3-1 4-7"
+# sound "supergong"
+# speed (scale 0.1 1.7 (rand))
+# pan (scale 0 1 saw1)
+# gain 0.9
+# hpf 2000
+
+d2 silence

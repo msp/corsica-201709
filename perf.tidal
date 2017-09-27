@@ -17,7 +17,7 @@ let pat = "bd sd"::Pattern String
 
 now <- getNow
 
-nudger (-0.02)
+nudger (0.01)
 
 
 
@@ -36,12 +36,12 @@ d1
 $ sometimesBy 0.4 (# crush 4)
 $ fast 1
 $ degradeBy 0.1
-$ sound "gabba*16"
+$ sound "gabba*4"
 # shape 0.4
 
 d1
-$ fast 1
-$ sound "gabba*4"
+$ sound "bd:5*2"
+# shape 0.7
 
 d1 silence
 

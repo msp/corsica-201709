@@ -1,8 +1,30 @@
-d1 $ sound "[808bd:1, bd:5(5,8), Xcp(3,4)?]"
+-- 150 ish
+
+d7 $ juxBy 0.1 (|*| speed "2")
+$ loopAt "<4>"
+$ chop 12
+$ sound "moog:0"
+# n (choose [0,1])
+# gain 0.85
+# hpf 550
+
+d7 silence
+
+d2
+$ sometimesBy 0.2 (# crush 4)
+$ degradeBy 0
+$ sound "msg*8"
+# n (irand 10)
+# gain 1
+# pan (scale 0 1 (fast 1 rand))
+# speed (scale 0.8 1 (fast 4 (sine)))
+
+
+d1 $ sound "[808bd:1, Xbd:5(5,8), Xcp(3,4)?]"
 
 t1 (xfadeIn 8) $ sound "[bd(5,8), cp:3, 808bd:1, haw*8]"
 
-d2
+t2 (xfadeIn 8)
 $ sound "[hh*4] [sd:0 sd:1? sd sd:1?]"
 # speed 1
 
@@ -30,13 +52,12 @@ $ (sound $ samples "m-metal:12" "0 2 3")
 d3 silence
 
 d4
+$ stut 2 0.6 0.9
 $ every 3 (# speed 1.5)
 $ sound "m-sweep"
-# legato 2
+# legato 4
 # speed 1
-# gain 0.7
-
-
-# hpf 2000
+# gain 0.8
+# hpf 5000
 
 d4 silence

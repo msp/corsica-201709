@@ -6,7 +6,7 @@ $ every 3 (silence1)
 $ every 4 (# speed 0.5)
 $ every 5 (silence1)
 $ every 8 (# speed 3)
-$ degradeBy 0.3 $ sound "form-msp5:4*8"
+$ degradeBy 0.3 $ sound "form-msp5:3*7"
 # begin (scale 0.2 0.7 (fast 2 sine))
 # end (scale 0.05 0.8 $ sine1)
 # gain 0.8
@@ -24,7 +24,7 @@ d1 silence
 d2
 $ sometimesBy 0.1 (# crush 4)
 $ every 3 (silence1)
-$ sound "form-msp5:2"
+$ sound "form-msp5:7"
 # begin (scale 0.2 0.7 (slow 2 sine))
 # end (scale 0 1 (slow 16 sine))
 # gain 1.1
@@ -41,7 +41,7 @@ $ every 4 (0.5 <~)
 $ sound "<tutorial5 ~> tutorial5> <tutorial5 ~> tutorial5>"
 # f "[50] 60"
 # sustain 2
-# gain 1
+# gain 0.9
 # accelerate 0.3
 # cutoff 50
 
@@ -64,19 +64,20 @@ $ every 33 (const $ degradeBy 0.1 $ sound "feelfx:9*8" # gain 1.2 # n (irand 8) 
 $ every 34 (const $ degradeBy 0.1 $ sound "gabba*8" # gain 1.2 # n (irand 8) )
 $ sometimesBy 0.1 (# crush 4)
 $ slow 1
-$ degradeBy 0.5
-$ sound "[[[feel:5*8,amencutup*2] feel:3*8], [amencutup*8, sid*16?]]"
+$ degradeBy 0.2
+$ sound "[[[feel:5*4, amencutup*2] feel:3*8], [amencutup*8, sid*16?]]"
 # n (irand 8)
 # begin (scale 0 0.05 (slow 2 sine))
 # end (scale 0.4 0.9 (slow 16 sine))
 # accelerate 0
 # speed (scale 1 1.2 (fast 2 sine))
 # shape 0.4
-# gain "1.1 0.9"
+# gain "1 0.9"
 
 # cutoff 100
 # cut 1
 # hpf 3000
+
 
 d4 silence
 
@@ -88,7 +89,7 @@ $ degradeBy 0.4
 $ sound "[[amencutup, feel:5*8], feelfx*4?]"
 # n (irand 8)
 # speed (scale 0.7 1.2 (rand))
-# hpf 2000
+# hpf 500
 
 d4 silence
 
@@ -137,13 +138,12 @@ hush
 /*************** PADZ ***************** /
 
 d7
-$ slow 8
+$ slow 1
 $ spread ($) [palindrome, slow 5, striate' 2 16, (# speed (scale 0.1 0.8 $ slow 5 $ sine1))]
 $ sound "<form-msp6:1> ~ <form-msp6:1> ~"
 # gain 0.9
 # pan (scale 0 1 (slow 8 (sine)))
 # hpf 1000
-
-# cutoff (scale 8500 16000 $ slow 2 sine1)
+# legato 15
 
 d7 silence

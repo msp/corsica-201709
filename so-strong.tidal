@@ -1,3 +1,5 @@
+-- 170 ish
+
 let boom1 = const $ degradeBy 0 $ sound "[ [m-boom? m-boom? m-boom?], [808bd:1*4] ]?" # gain 1
 let clap1 = const $ degradeBy 0 $ sound "[ [cp(6,4)?], [808bd:1*2] ]" # gain 0.9
 
@@ -8,7 +10,7 @@ $ every 3 (# speed 0.8)
 $ every 9 (boom1)
 $ every 7 (clap1)
 $ every 32 (fast 2)
-$ sound "[[808bd:1(2,4)] [~ hc:2*1]]"
+$ sound "[[808bd:1(4,8)] [~ hc:2*3?]]"
 # gain "0.9 0.7 0.7"
 
 d2 silence
@@ -24,13 +26,14 @@ $ sound (samples "[m-tape]" "2")
 # hpf 3000
 # gain 0.5
 
-let bassfill = const $ degradeBy 0 $ sound "[psin*8?]" # gain 0.8 # freq 250 # modfreq 41 # speed 1.5
 
 let (freq, _) = pF "freq" (Just 440)
 
 let (modfreq, _) = pF "modfreq" (Just 40)
 
 let (width, _) = pF "width" (Just 0.3)
+
+let bassfill = const $ degradeBy 0 $ sound "[psin*8?]" # gain 0.8 # freq 250 # modfreq 41 # speed 1.5
 
 
 d4
@@ -40,7 +43,7 @@ $ sound "psin"
 # freq 250
 # modfreq (choose [41, 51, 51, 151])
 # speed 2
-# gain 0.7
+# gain 0.6
 
 d5
 $ sound "~ imp"
@@ -65,11 +68,23 @@ $ every 2 (rev)
 $ every 4 (silence1)
 $ sound "m-vox*1"
 # legato (choose [2, 3, 4, 5])
-# speed (choose [0.2, 0.3])
+# speed (choose [0.8, 0.9])
 # begin (choose [0.2, 0.5, 0.6, 0.7, 0.8])
 # gain 1
-# room 0.5
-# size 0.1
+# room 0.7
+# size 0.5
 # pan (slow 3 $ sine)
 # shape 0.3
 # bpf 6000
+
+d6 silence
+
+-- + RYTM E9
+d7
+$ fast 2
+$ iter 2
+$ sometimesBy 0.15 (# crush 4)
+$ every 2 (rev)
+$ every 4 (silence1)
+$ sound "drum*4"
+# n (run 8)
