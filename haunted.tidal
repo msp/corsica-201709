@@ -26,6 +26,7 @@ $ degradeBy 0.3 $ sound "form-msp5:3*4"
 # bpf (scale 500 4000 $ fast 2 (saw1))
 # bpq 0.9
 # pan (scale 0 1 $ fast 2(saw1))
+# orbit ch3_4
 
 d3 silence
 
@@ -41,6 +42,7 @@ $ sound "[ form-msp5:7*1, gabba*8? ]"
 # shape 0.5
 # legato 1
 # pan (scale 0 1 (slow 2 saw1))
+# orbit ch1_2
 
 d4 silence
 
@@ -55,6 +57,7 @@ $ degradeBy 0.3 $ sound "[gabba*8, [~ industrial:1*8]?]"
 # gain "1 0.8"
 # shape 0.5
 # speed 0.8
+# orbit ch1_2
 
 d4 silence
 
@@ -70,6 +73,7 @@ $ sound "form-msp5:11"
 # shape 0.5
 # gain 0.8
 # hpf 2000
+# orbit ch3_4
 
 d5 silence
 
@@ -87,6 +91,7 @@ $ sound "form-msp6:3 ~"
 # accelerate 0
 # legato 10
 # hpf 500
+# orbit ch3_4
 
 # cutoff (scale 500 2000 $ slow 2 sine1)
 
@@ -104,5 +109,6 @@ $ sound "tutorial3" # n (choose [-27,-27,-26])
 # shape 0.2
 # coarse 4
 # sustain 3
+# orbit ch1_2
 
 d2 silence

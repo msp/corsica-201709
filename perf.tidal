@@ -3,7 +3,7 @@ cps 1
 cps (125/60/4)
 
 let ch1_2 = 0
-let ch3_4 = 0
+let ch3_4 = 1
 let ch5_6 = 0
 let ch7_8 = 0
 
@@ -17,7 +17,7 @@ let pat = "bd sd"::Pattern String
 
 now <- getNow
 
-nudger (0.01)
+nudger (-0.01)
 
 
 
@@ -39,10 +39,11 @@ $ degradeBy 0.1
 $ sound "gabba*4"
 # shape 0.4
 
-d1
-$ sound "bd:5*2"
+d2
+$ sound "bd:5*1"
 # shape 0.7
 # gain 0.8
+# orbit ch1_2
 
 d1 silence
 
@@ -64,24 +65,41 @@ $ every 4 (silence1)
 d1
 $ sometimesBy 0.25 (# crush 4)
 $ degradeBy 0
-$ sound "[form-msp5:0*11]"
-# gain 0.8
+$ sound "[form-msp5:11*4]"
+# gain 0.7
 # shape 0.5
 # legato 5
 # speed (choose [0.9, 1 , 1.05])
 # pan (scale 0 1 (slow 2 saw1))
 # hpf 00
+# orbit ch3_4
+
+d1 silence
 
 d2
 $ sometimesBy 0.25 (# crush 4)
 $ degradeBy 0
-$ sound "[808bd:1(1,8), Xsd:3(6,8)?]"
+$ sound "[808bd:1(3,8)]"
 # gain "0.9"
 # shape 0.5
 # legato 5
 # speed (choose [0.9, 1 , 1.05])
 # pan (scale 0 1 (slow 2 saw1))
+# orbit ch1_2
 
+d2 silence
+
+d3
+$ sometimesBy 0.25 (# crush 4)
+$ degradeBy 0
+$ sound "[sd:1(3,8)]"
+# gain "0.9"
+# shape 0.1
+# legato 5
+# speed (choose [0.9, 1 , 1.05])
+# orbit ch1_2
+
+d3 silence
 
 
 
