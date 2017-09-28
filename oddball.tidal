@@ -1,0 +1,38 @@
+-- speed range
+
+d3
+$ every 8 (rev)
+$ every 32 (const $ degradeBy 0.1 $ sound "perc*2" # gain 1 # n (run 8) )
+$ every 5 (const $ degradeBy 0.1 $ sound "perc*8" # gain 1 # n (run 8) )
+$ every 24 (const $ degradeBy 0.1 $ sound "gabba*16?" # gain 1 # n (run 8) # speed 0.5 )
+$ sometimesBy 0.1 (# crush 4)
+$ slow 1
+$ degradeBy 0.3
+$ sound "[[[perc:5*8, perc*2] perc:3*8], [perc*8, Xsid*16?]]"
+# n (irand 8)
+# begin (scale 0 0.05 (slow 2 sine))
+# end (scale 0.4 0.9 (slow 16 sine))
+# accelerate 0
+# speed (scale 0.2 0.9 (fast 2 sine))
+# shape 0.4
+# gain "1 0.9"
+# hpf 000
+
+d3 silence
+
+d8
+$ fast 2
+$ sound "[hh:11*3?, future:5*3?, future:3*2 hardcore:7*3]"
+# end (scale 0.04 0.38 $ fast 2 $ sine1)
+# speed (scale 0.96 1 (fast 4 (sine)))
+# gain "1 1 1 1"
+
+d8 silence
+
+d4
+$ fast 4
+$ sound "[~ hc, ~ ~ ~ hc:2/2, ho:4/4? ~ ~ ~]"
+# gain 0.7
+# hpf 6000
+
+d4 silence

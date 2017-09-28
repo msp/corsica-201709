@@ -1,0 +1,74 @@
+/*************** JAZZER ***************** /
+
+d1
+$ degradeBy 0.3
+$ every 4 (slow 32)
+$ every 200 (# sound "gabba*16")
+$ every 300 (# sound "subroc3d*16")
+$ sound "psr*16"
+# note (irand(30))
+# gain "0.7 1 0.7"
+# room (scale 0.4 0.1 (slow 3 (sine)))
+# size (scale 0.1 0.8 (slow 8 (sine)))
+# pan (scale 1 0 $ slow 4 $ sine1)
+# cut 1
+# orbit ch3_4
+
+d1 silence
+
+hush
+
+/*************** GLITCH ***************** /
+
+d2
+$ degradeBy 0
+$ every 4 (0.25 <~)
+$ stack [
+ sound "<msp ~ print:1*2 ~ print:0 ~ ~ >/10 <casio:1*2? ~ procshort*8?>"
+]
+# note (irand(30))
+# gain 0.8
+# speed "[[0.5 1 -0.6], [3 -2 1 1.5]*2]/3"
+# shape (scale 0.1 0.7 $ slow 10 $ sine1)
+# delay 0.1
+# delaytime 0.1
+# delayfeedback (scale 0.1 0.8 $ slow 10 $ sine1)
+# room (scale 0.4 0.1 (slow 3 (sine)))
+# size (scale 0.1 0.8 (slow 8 (sine)))
+# pan (scale 1 0 $ slow 2 $ sine1)
+# orbit ch3_4
+
+d2 silence
+
+/*************** SUBS ***************** /
+
+let (f, f_p) = pF "f" (Just 440)
+
+d3
+$ sound "<tutorial5/2 ~>"
+# f "[50, 51]"
+# sustain 2
+# gain 1.1
+# accelerate 0.5
+
+d3 silence
+
+/*************** HI FX ***************** /
+
+d4
+$ degradeBy 0.5
+$ spread ($) [fast 2, rev, slow 2, striateL' 16 0.33 2, (# speed "0.8")]
+$ sometimesBy 0.4 (# crush "5")
+$ every 16 (0.25 <~)
+$ sound "form-msp3"
+# speed "<[[-5 1 -0.6 3], [-1.2 -1 1 -1.5]*2]/3 ~>"
+# gain 0.8
+# shape 0.4
+# bpf (scale 10000 20000 $ slow 5 sine1)
+# orbit ch3_4
+
+# accelerate (scale 0.4 0.1 (slow 10 (sine)))
+
+d4 silence
+
+hush

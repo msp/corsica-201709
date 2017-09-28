@@ -1,0 +1,51 @@
+-- 150 ish
+
+-- sid is the bass note (1) so change it's value
+d3
+$ every 4 (silence1)
+$ every 16 (const $ degradeBy 0.1 $ sound "form-msp7*3" # gain 1 # n (irand 8) )
+$ degradeBy 0
+$ sound "[[[bd*2?,sd] perc:5?*8], [perc sid:1*4 ~, tok*12?]]"
+# gain "1 1.1 1 1.2"
+# speed "0.5 0.9 1 0.5"
+
+d3 silence
+
+d4
+$ slow 1
+$ sound "form-msp1:2 ~"
+# cutoff (scale 500 20000 $ slow 2 sine1)
+# pan (scale 0 1 (slow 8 (sine)))
+# speed 0.8
+# legato 3
+# gain 0.8
+
+# hpf 4000
+
+
+d5
+$ sometimesBy 0.2 (# crush 4)
+$ every 2 (# speed 0.4)
+$ slow 3
+$ sound "loops-msp"
+# pan (scale 0 1 (slow 4 (saw)))
+# gain 1.1
+# hpf 3000
+
+d5
+$ sometimesBy 0.2 (# crush 2)
+$ slow 10
+$ sound "loops-msp:1"
+# hpf 1000
+
+
+d2
+$ sometimesBy 0.2 (# crush 4)
+$ degradeBy 0
+$ sound "msg*8"
+# n (irand 10)
+# gain 0.8
+# pan (scale 0 1 (fast 1 rand))
+# speed (scale 0.8 1 (fast 4 (sine)))
+
+d2 silence

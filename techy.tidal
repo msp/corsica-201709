@@ -1,0 +1,99 @@
+-- 135 (1/2 time)
+
+d5
+$ fast 2
+$ stack [
+  sound "<techno*2>",
+  sound "<~ [techno:3]>",
+  sound "<~ [techno:4]>"
+]
+# orbit ch1_2
+# gain 1.6
+# speed 0.5
+
+# room (scale 0.4 0.1 (slow 3 (sine)))
+# size (scale 0.1 0.4 (slow 8 (sine)))
+
+
+d5 silence
+
+hush
+
+/*************** DONK ***************** /
+
+d7
+$ fast 4
+$ stack [
+  sound "<form-msp4 ~ ~ form-msp4*2? ~ ~ ~ ~ form-msp4 ~ ~ ~ form-msp4*4? ~ ~ ~>"
+]
+# end (scale 0.10 0.5 (slow 15 sine))
+# cutoff (scale 0 22000 $ slow 2 saw1)
+# resonance (scale 0.1 0.2 $ fast 19 $ sine1)
+# gain "1.2"
+# orbit ch1_2
+
+d7 silence
+
+hush
+
+/*************** PADSZ ***************** /
+
+-- 3 pads here form-msp1, #2 crackles
+d6
+$ slow 1
+$ spread ($) [fast 4, palindrome, slow 5, striate' 2 16, (# speed (scale 0.1 0.8 $ slow 5 $ sine1))]
+$ every 16 (0.25 <~)
+$ sound "<form-msp4:0*2? form-msp1:1*4? form-msp1:2*3>"
+# gain "0.8 0.6"
+# speed 4
+# cutoff (scale 50 2000 $ slow 2 saw1)
+# resonance (scale 0.1 0.4 $ fast 19 $ sine1)
+# room (scale 0.4 0.1 (slow 3 (sine)))
+# size (scale 0.1 0.4 (slow 8 (sine)))
+# legato 10
+
+# delay 0.4
+# delaytime 0.1
+# delayfeedback (scale 0.1 0.4 $ slow 10 $ sine1)
+# pan (scale 1 0 $ slow 3 $ sine1)
+# orbit ch5_6
+
+# accelerate (scale 0.4 0.1 (slow 3 (sine)))
+# cut 1
+
+# bpf (scale 500 6000 $ slow 5 sine1)
+
+d6 silence
+
+hush
+
+d9
+$ every 2 (# speed 1)
+$ sometimesBy 0.4 (# crush "4")
+$ fast 12
+$ sound "<imp> ~"
+# gain 1
+# speed 4
+# shape 0.4
+# begin (scale 0 0.9 $ slow 4 $ saw1)
+# bpf (scale 2000 6000 $ slow 10 $ sine1)
+
+# delay 0.5
+# delaytime (scale 0.1 0.6 $ slow 4 $ sine1)
+# delayfeedback 0.4
+# pan (scale 1 0 $ slow 2 $ sine1)
+
+d9 silence
+
+d9
+$ sound "~ <imp>"
+# gain 0.8
+# speed 1
+# begin (scale 0 0.9 $ slow 4 $ saw1)
+# bpf (scale 4000 6000 $ slow 10 $ sine1)
+# delay 0.5
+# delaytime (scale 0.1 0.6 $ slow 4 $ sine1)
+# delayfeedback 0.4
+# pan (scale 1 0 $ slow 2 $ sine1)
+
+d9 silence

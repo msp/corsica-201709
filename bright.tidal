@@ -10,8 +10,9 @@ $ sound "[imp*8]"
 # sustain (choose [3,7,9])
 # begin (scale 0.6 0.8 (slow 2 sine))
 # end (scale 3 30 (slow 3 sine))
-# gain 0.8
+# gain 0.9
 # accelerate 0
 # pan (scale 0 1 $ rand)
+# hpf 1000
 
 d1 silence

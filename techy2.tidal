@@ -1,0 +1,65 @@
+-- FX
+
+d8
+$ sound "tacscan"
+# n (irand 22)
+# gain 0.75
+# speed (scale 0.6 1 (fast 4 (sine)))
+# pan (scale 0 1 (fast 1 rand))
+# end (scale 0 0.6 $ sine1)
+
+# bpf 5000
+
+d8 silence
+
+
+
+
+-- broke tech 150 BPM
+
+cps (150/60/4)
+
+
+t1 (xfadeIn 16)
+
+d1
+$ fast 2
+$ every 2 (# coarse 4)
+$ every 3 (# crush 4)
+$ sound "[techno:1*1, techno:2 ~ techno:6*3?]"
+# gain 1
+# speed 0.7
+
+
+d1 silence
+
+
+-- adjust the sample on these
+
+d3
+$ every 2 (# coarse 4)
+$ every 3 (# crush 4)
+$ sound "[ul*1? ul:7? ul:8 ]"
+# gain "1.2 1.2 1"
+# speed 0.4
+
+d3 silence
+
+d4
+$ every 2 (# coarse 8)
+$ every 3 (# crush 6)
+$ sound "[techno:6*16]"
+# gain "0.7 1 0.8"
+# speed 0.4
+# end (scale 0 0.84 $ sine1)
+# pan (scale 0 1 (fast 2 saw1))
+# hpf 7000
+
+d4 silence
+
+d2
+$ sound "[bd Xstomp*1? bd/2 sd*3?, rs ~ rs*4?]"
+# speed "0.5 0.4 0.6 1 0.8"
+# gain 0.9
+
+d2 silence

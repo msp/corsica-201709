@@ -1,0 +1,20 @@
+/*************** SYNTHS ***************** /
+
+/* MIC */
+
+d7
+$ sound "inr"
+# gain 1
+
+d7 silence
+
+d8
+$ sound "cyclo"
+# n 1
+# gain 0.5
+# sustain 16
+# hpf 2000
+# hpq 1
+# pan (scale 1 0 $ slow 10 $ sine1)
+
+d8 silence

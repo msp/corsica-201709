@@ -22,8 +22,8 @@ $ every 8 (# speed 3)
 $ degradeBy 0.3 $ sound "form-msp5:3*4"
 # shape 0.1
 # gain 1
-# end (scale 0.05 0.19 $ slow 4(sine1))
-# bpf (scale 1000 3000 $ fast 2(saw1))
+# end (scale 0.05 0.19 $ slow 4 (sine1))
+# bpf (scale 500 4000 $ fast 2 (saw1))
 # bpq 0.9
 # pan (scale 0 1 $ fast 2(saw1))
 
@@ -36,7 +36,7 @@ $ every 8 (silence1)
 $ every 4 (silence1)
 $ sometimesBy 0.25 (# crush 4)
 $ degradeBy 0
-$ sound "[form-msp5:7*1, Xgabba*8?]"
+$ sound "[ form-msp5:7*1, gabba*8? ]"
 # gain "1 0.8"
 # shape 0.5
 # legato 1
@@ -48,9 +48,9 @@ $ degradeBy 0.3 $ sound "[imp*4, form-msp5:1*8, gabba*8?, [~ industrial:1*8]?]"
 
 d4
 $ sometimesBy 0.25 (# crush 4)
-$ every 15 (fill1)
-$ every 8 (fill2)
-$ every 2 (fill3)
+$ every 15 (silence1)
+$ every 8 (silence1)
+$ every 2 (silence1)
 $ degradeBy 0.3 $ sound "[gabba*8, [~ industrial:1*8]?]"
 # gain "1 0.8"
 # shape 0.5
@@ -68,7 +68,7 @@ $ slow 3
 $ sound "form-msp5:11"
 # begin (scale 0 1 (slow 16 sine1))
 # shape 0.5
-# gain 0.9
+# gain 0.8
 # hpf 2000
 
 d5 silence
