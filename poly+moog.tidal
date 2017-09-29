@@ -7,6 +7,7 @@ $ sound "moog:0"
 # n (choose [0,1])
 # gain 0.85
 # hpf 550
+# orbit ch3_4
 
 d7 silence
 
@@ -18,20 +19,26 @@ $ sound "msg*8"
 # gain 1
 # pan (scale 0 1 (fast 1 rand))
 # speed (scale 0.8 1 (fast 4 (sine)))
+# orbit ch1_2
 
 
-d1 $ sound "[808bd:1, Xbd:5(5,8), Xcp(3,4)?]"
+d1
+$ sound "[808bd:1, Xbd:5(5,8), Xcp(3,4)?]"
+# orbit ch1_2
 
 t1 (xfadeIn 8) $ sound "[bd(5,8), cp:3, 808bd:1, haw*8]"
+# orbit ch1_2
 
 t2 (xfadeIn 8)
 $ sound "[hh*4] [sd:0 sd:1? sd sd:1?]"
 # speed 1
+# orbit ch1_2
 
 d2 silence
 
 
 d1 $ sound "[bd:5(4,11), cp(4,11)?]"
+# orbit ch1_2
 
 let fill = const $ degradeBy 0 $ (sound $ samples "m-metal:20" "0 2 3") # gain 0.7
 
@@ -48,6 +55,7 @@ $ (sound $ samples "m-metal:12" "0 2 3")
 # legato 0.8
 # pan (scale 0 1 $ fast 2 $ rand)
 # bpf 4000
+# orbit ch3_4
 
 d3 silence
 
@@ -59,5 +67,6 @@ $ sound "m-sweep"
 # speed 1
 # gain 0.8
 # hpf 5000
+# orbit ch3_4
 
 d4 silence

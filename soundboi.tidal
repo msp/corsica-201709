@@ -73,6 +73,7 @@ $ sound "[[[feel:5*4, amencutup*2] feel:3*8], [amencutup*8, sid*16?]]"
 # speed (scale 1 1.2 (fast 2 sine))
 # shape 0.4
 # gain "1 0.9"
+# orbit ch1_2
 
 # cutoff 100
 # cut 1
@@ -145,5 +146,6 @@ $ sound "<form-msp6:1> ~ <form-msp6:1> ~"
 # pan (scale 0 1 (slow 8 (sine)))
 # hpf 1000
 # legato 15
+# orbit ch3_4
 
 d7 silence

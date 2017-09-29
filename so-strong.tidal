@@ -12,6 +12,7 @@ $ every 7 (clap1)
 $ every 32 (fast 2)
 $ sound "[[808bd:1(4,8)] [~ hc:2*3?]]"
 # gain "0.9 0.7 0.7"
+# orbit ch1_2
 
 d2 silence
 
@@ -25,6 +26,7 @@ $ sound (samples "[m-tape]" "2")
 # pan (slow 2 $ sine)
 # hpf 3000
 # gain 0.5
+# orbit ch3_4
 
 
 let (freq, _) = pF "freq" (Just 440)
@@ -45,6 +47,8 @@ $ sound "psin"
 # speed 2
 # gain 0.6
 
+d4 silence
+
 d5
 $ sound "~ imp"
 # freq 110
@@ -60,6 +64,8 @@ $ sound "~ imp"
 # delayfeedback (scale 0 0.6 $ slow 10 $ sine1)
 # pan (slow 2 $ sine)
 
+d5 silence
+
 # orbit 1
 
 d6
@@ -68,7 +74,7 @@ $ every 2 (rev)
 $ every 4 (silence1)
 $ sound "m-vox*1"
 # legato (choose [2, 3, 4, 5])
-# speed (choose [0.8, 0.9])
+# speed (choose [0.2, 0.3])
 # begin (choose [0.2, 0.5, 0.6, 0.7, 0.8])
 # gain 1
 # room 0.7
@@ -76,6 +82,8 @@ $ sound "m-vox*1"
 # pan (slow 3 $ sine)
 # shape 0.3
 # bpf 6000
+# gain 0.9
+# orbit ch3_4
 
 d6 silence
 

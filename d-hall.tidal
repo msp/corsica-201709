@@ -13,7 +13,9 @@ $ fast 2
 $ (sound $ samples "[drum*4?, [Xstab:8*3?, Xstab:7*2?]?, 808bd:1*1?]" "0 3 6 8 6 7")
 # speed 1
 # gain 1
+# orbit ch1_2
 
+d1 silence
 
 d2
 $ fast 2
@@ -29,5 +31,6 @@ $ (sound $ samples "[hc*4?, ho/2 ~ ho? ho:1]" "0 3 6 8 6 7")
 # speed 1
 # gain 0.7
 # coarse 3
+# orbit ch3_4
 
 d2 silence
