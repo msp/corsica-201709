@@ -4,8 +4,21 @@ cps (125/60/4)
 
 let ch1_2 = 0
 let ch3_4 = 1
-let ch5_6 = 0
-let ch7_8 = 0
+let ch5_6 = 2
+let ch7_8 = 3
+
+-- Output to Total Mix channels and activate loopback
+-- Set Supercollider to output to UCX via system prefs
+-- let tm1_2 = 0 <-- used for monitoring via Focal's
+let tm3_4 = 1
+let tm5_6 = 2
+let tm7_8 = 3
+-- let tm9_10 <-- the UCX skips this output on loopback. Go figure. Maybe as it's SPDIF?
+let tm11_12 = 4
+let tm13_14 = 5
+let tm15_16 = 6
+let tm17_18 = 7 -- spare
+
 
 let silence1 = const $ degradeBy 0.3 $ sound "~"
 
@@ -59,47 +72,6 @@ $ every 15 (silence1)
 $ every 8 (silence1)
 $ every 4 (silence1)
 
--- start 11, 7, 3, (1), 0
--- 150 ish
-
-d1
-$ sometimesBy 0.25 (# crush 4)
-$ degradeBy 0
-$ sound "[form-msp5:11*4]"
-# gain 0.7
-# shape 0.5
-# legato 5
-# speed (choose [0.9, 1 , 1.05])
-# pan (scale 0 1 (slow 2 saw1))
-# hpf 00
-# orbit ch3_4
-
-d1 silence
-
-d2
-$ sometimesBy 0.25 (# crush 4)
-$ degradeBy 0
-$ sound "[808bd:1(3,8)]"
-# gain "0.9"
-# shape 0.5
-# legato 5
-# speed (choose [0.9, 1 , 1.05])
-# pan (scale 0 1 (slow 2 saw1))
-# orbit ch1_2
-
-d2 silence
-
-d3
-$ sometimesBy 0.25 (# crush 4)
-$ degradeBy 0
-$ sound "[sd:1(3,8)]"
-# gain "0.9"
-# shape 0.1
-# legato 5
-# speed (choose [0.9, 1 , 1.05])
-# orbit ch1_2
-
-d3 silence
 
 
 
@@ -125,43 +97,21 @@ $ stack [
 # size (scale 0.1 0.4 (slow 8 (sine)))
 # orbit ch1_2
 
+d5 silence
+
 /* STRAIGHT */
 
 hush
 
 cps 1
 
-d5
-$ fast 4
-$ stack [
-  sound "<form-msp2*2 form-msp2*4? form-msp2> / 2",
-  sound "<[techno:3/2 ~ ~ stab:2/16?]/2 <sd industrial:2 industrial:3 industrial:5*5? >> / 2"
-]
-# end 0.3
-# speed "1.5 1.3 1.8 -0.5"
-# gain "1.4 0.8"
-# shape 0.4
-# orbit ch1_2
-# cut 1
-
-# accelerate (scale 0.7 0.1 (slow 10 (sine)))
-# crush (scale 4 10 (slow 10 (sine)))
-# cutoff (scale 0 22000 $ slow 2 saw1)
-
-# delay 0.1
-# delaytime 0.1
-# delayfeedback (scale 0.1 0.8 $ slow 10 $ sine1)
-
-# speed "1.5 1 1.8 -0.5"
-
-d5 silence
 
 -- 140 4/4
 cps (140/60/2)
 
 hush
 
-d1 $ sound "<~ [supergong*4]>" # gain 0.8
+
 
 
 
@@ -176,7 +126,7 @@ d1 $ sound "<~ [supergong*4]>" # gain 0.8
 
  $ spread ($) [(# speed (scale 0.1 0.8 $ slow 5 $ sine1))]
 
-d1
+d7
 $ fast 1
 $ degradeBy 0.25
 $ sound "form-msp5 form-msp5*6"

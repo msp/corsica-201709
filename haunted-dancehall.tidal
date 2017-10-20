@@ -1,0 +1,125 @@
+cps (170/60/4)
+
+
+-- start 11, 7, 3, (1), 0
+let scream = 11
+let perc = 7
+let zap = 3
+let machine = 1
+let drone = 0
+let seqSilence = sound "~"
+
+-- PAD
+d1
+$ sometimesBy 0.25 (# crush 4)
+$ degradeBy 0
+$ sound "[form-msp5:1*4]"
+# note (choose [drone])
+# gain 0.8
+# shape 0.5
+# legato 8
+# speed (choose [0.4, 0.8, 1 , 1.05])
+# pan (scale 0 1 (slow 2 saw1))
+# hpf (scale 00 2500 (slow 8 sine))
+# orbit tm7_8
+
+d1 silence
+
+-- FX
+d2
+$ sometimesBy 0.25 (# crush 4)
+$ (pure now) ~> seqPLoop [
+  (0, 2, sound "form-msp5*4?" # note machine # legato (choose [4, 6])),
+  (2, 4, sound "form-msp5*4?" # note scream),
+  (4, 12, seqSilence),
+  (12, 14, sound "form-msp5*4?" # note zap # legato (choose [1, 4])),
+  (14, 16, seqSilence),
+  (16, 18, sound "form-msp5*4?" # note perc # legato (choose [4, 6])),
+  (18, 20, sound "form-msp5*4?" # note scream),
+  (20, 32, seqSilence)
+]
+# gain 0.8
+# shape 0.5
+# legato 8
+# speed (choose [0.7, 1 , 1.55])
+# pan (choose [0,1])
+# hpf 1500
+# orbit tm11_12
+
+d2 silence
+
+-- SUB
+
+d3
+$ every 16 (const $ sound "[world:6*3 bassdm:1*3, electro1*9 electro1:9*5?, feelfx*3? ]" # shape 0.3 # speed (choose [0.7, 1 , 1.05]) # gain 0.9 # orbit tm3_4)
+$ every 12 (const $ sound "[808bd:1(2,8)]" # orbit tm3_4)
+$ every 4 (const $ sound "[808bd:1(1,8)]" # orbit tm3_4)
+$ sometimesBy 0.05 (stut 2 1 0.5)
+$ sometimesBy 0.1 (# crush 4)
+$ degradeBy 0
+$ sound "[808bd:1(3,8)]"
+# gain 1
+# shape 0.5
+# legato 4
+# speed (choose [0.8, 0.9, 1, 1.05])
+# pan (scale 0 1 (slow 2 saw1))
+# orbit tm3_4
+
+d3 silence
+
+-- SNARE
+
+d4
+$ every 8 (const $ sound "~")
+$ sometimesBy 0.25 (# crush 4)
+$ sometimesBy 0.3 (stut 2 1 0.5)
+$ degradeBy 0
+$ sound "[sd(3,8)]"
+# note "1 0 1"
+# gain 0.8
+# shape 0.7
+# legato 5
+# speed (choose [0.9, 1 , 1.05])
+# orbit tm5_6
+
+d4 silence
+
+-- RYTM*2
+
+d5
+$ every 2 (const $ sound "~")
+$ every 3 (const $ sound "~")
+$ every 4 (const $ sound "~")
+$ every 8 (const $ sound "~")
+$ sometimesBy 0.2 (# crush 4)
+$ fast 4
+$ stack [
+  sound "<form-msp2*2 form-msp2*4? form-msp2> / 1",
+  sound "<[techno:3/2 ~ ~ stab:2/16?]/2 <sd industrial:2 industrial:3 industrial:5*5? >> / 1"
+]
+# end 0.2
+# speed "1.5 1.3 1.8 -0.5"
+# gain 0.7
+# shape 0.9
+# hpf 300
+# accelerate (scale 0.7 0.1 (slow 10 (sine)))
+# crush (scale 4 10 (slow 10 (sine)))
+# cutoff (scale 0 22000 $ slow 2 saw1)
+# delay 0.1
+# delaytime 0.1
+# delayfeedback (scale 0.1 0.8 $ slow 10 $ sine1)
+# orbit tm13_14
+
+d5 silence
+
+-- GONG
+
+d6
+$ every 8 (const $ sound "~")
+$ sometimesBy 0.5 (# crush 4)
+$ sound "<~ [supergong*8?]>"
+# gain 0.8
+# speed (choose [0.3, 0.6, 0.8, 1.5])
+# orbit tm15_16
+
+d6 silence

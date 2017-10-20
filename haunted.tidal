@@ -13,7 +13,7 @@ let fill3 = const $ degradeBy 0.3 $ sound "form-msp5:8*4" # begin (scale 0 0.4 $
 -- master kiks (change degrade/*8)
 -- form-msp5:1*8
 
-cps (140/60/4)
+cps (160/60/4)
 
 -- Scratchy
 
