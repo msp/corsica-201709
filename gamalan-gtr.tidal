@@ -6,11 +6,19 @@
 
 let seqSilence = sound "~"
 
-let seqPerc = stut 2 0.5 0.4 $ sometimesBy 0.5 (# shape 0.5) $ every 8 (# speed 3) $ degradeBy 0.3 $ sound "form-msp5:9*4" # gain 1 # end (scale 0.05 0.17 $ slow 4(sine1)) # speed 1.8
+-- let seqPerc = stut 2 0.5 0.4 $ sometimesBy 0.5 (# shape 0.5) $ every 8 (# speed 3) $ degradeBy 0.3 $ sound "form-msp5:9*4" # gain 1 # end (scale 0.05 0.17 $ slow 4(sine1)) # speed 1.8 # orbit tm5_6
 
-let seqGtr = degradeBy 0.5 $ sound "form-msp5:10*4" # end (scale 0.1 0.5 $ sine1) # pan (scale 0 1 $ slow 16(sine1)) # gain 1
+let seqPerc = stut (choose [1,2,2,2,3,4]) (choose [0.1, 0.5, 0.5, 0.6]) (choose [0.1, 0.4, 0.4, 0.6]) $ sometimesBy 0.3 (# shape (choose [0.3, 0.3, 0.5, 0.7])) $ every 8 (# speed 3) $ degradeBy 0.3 $ sound "form-msp5:9*4" # gain 1 # end (scale 0.05 0.17 $ slow 4(sine1)) # speed 1.8 # orbit tm5_6
+
+let seqGtr = degradeBy 0.5 $ sound "form-msp5:10*4" # end (scale 0.1 0.5 $ sine1) # pan (scale 0 1 $ slow 16(sine1)) # gain 1 # orbit tm3_4
+
+
+-- add me to mess up
+
 
 t1 (xfadeIn 16)
+$ striate' 16 (1/16)
+$ sometimesBy 0.3 (# crush 7)
 $ (pure now) ~> seqPLoop [
   (0, 4, seqGtr),
   (4, 6, seqSilence),
@@ -19,25 +27,43 @@ $ (pure now) ~> seqPLoop [
 ]
 # pan (scale 0 1 saw1)
 # speed 0.5
-# cutoff 11350
+# cutoff 50
+
+# lpq 0.3
 
 d1 silence
 
 -- GONG ARPS?
-$ spread ($) [fast 2, palindrome, slow 5, striate' 2 8, (# speed (scale 0.1 0.8 $ slow 5 $ sine1))]
 
 t2 (xfadeIn 16)
+$ spread ($) [fast 2, palindrome, slow 5, striate' 2 8, (# speed (scale 0.1 0.8 $ slow 5 $ sine1))]
 $ stut 7 0.2 0.5
 $ every 4 (0.25 <~)
 $ every 2 (silence1)
 $ every 3 (# speed 0.3)
-$ slow 16
+$ slow 20
 $ sometimesBy 0.1 (# crush "8")
 $ n "0-7 3-1 4-7"
 # sound "supergong"
 # speed (scale 0.1 1.7 (rand))
-# pan (scale 0 1 saw1)
-# gain 0.9
-# hpf 2000
+# pan (scale 0 1 $ slow 16 $ sine1)
+# gain 0.8
+# hpf 4000
+# orbit tm7_8
 
 d2 silence
+
+$ stut 1 0.6 0.5
+
+d3
+$ slow 1
+$ spread ($) [palindrome, striate' 2 16]
+$ sound "form-msp6:3 ~"
+# begin (choose [0, 0.6, 0.8])
+# gain 1
+# pan (scale 0 1 (slow 8 (sine)))
+# speed 0.4
+# accelerate 0
+# legato 55
+# hpf 200
+# orbit tm11_12
